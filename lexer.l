@@ -20,8 +20,7 @@
            else if (str.compare(i, 3, "⁷") == 0) { ascii_str += "7"; i += 3; }
            else if (str.compare(i, 3, "⁸") == 0) { ascii_str += "8"; i += 3; }
            else if (str.compare(i, 3, "⁹") == 0) { ascii_str += "9"; i += 3; }
-           else if (str[i] == '.') { ascii_str += "."; i += 1; }
-           else { ++i; } // Skip unexpected characters safely
+           else { ++i; } // Skip unexpected characters
        }
        return atof(ascii_str.c_str());
    }
@@ -39,8 +38,7 @@
            else if (str.compare(i, 3, "₇") == 0) { ascii_str += "7"; i += 3; }
            else if (str.compare(i, 3, "₈") == 0) { ascii_str += "8"; i += 3; }
            else if (str.compare(i, 3, "₉") == 0) { ascii_str += "9"; i += 3; }
-           else if (str[i] == '.') { ascii_str += "."; i += 1; }
-           else { ++i; } // Skip unexpected characters safely
+           else { ++i; } // Skip unexpected characters
        }
        return atof(ascii_str.c_str());
    }
@@ -51,9 +49,9 @@ SUBSCRIPT_DIGIT ("₀"|"₁"|"₂"|"₃"|"₄"|"₅"|"₆"|"₇"|"₈"|"₉")
 
 %%
 
-[0-9]+(\.[0-9]+)?         { yylval = atof(yytext); return NUM; }
+[0-9]+(\.[0-9]+)?       { yylval = atof(yytext); return NUM; }
 {SUPERSCRIPT_DIGIT}     { yylval = parse_superscript(yytext); return SUPERSCRIPT_NUM; }
-{SUBSCRIPT_DIGIT}         { yylval = parse_subscript(yytext, 0); return SUBSCRIPT_NUM; }
+{SUBSCRIPT_DIGIT}       { yylval = parse_subscript(yytext, 0); return SUBSCRIPT_NUM; }
 
 "B"            { return BERNOULLI; }
 "log"          { return LOG_BASE; }
@@ -121,12 +119,12 @@ SUBSCRIPT_DIGIT ("₀"|"₁"|"₂"|"₃"|"₄"|"₅"|"₆"|"₇"|"₈"|"₉")
 "arcsec"       { return ARCSEC; }
 "arccsc"       { return ARCCSC; }
 
-"sinh"       { return SINH; }
-"cosh"       { return COSH; }
-"tanh"       { return TANH; }
-"coth"       { return COTH; }
-"sech"       { return SECH; }
-"csch"       { return CSCH; }
+"sinh"         { return SINH; }
+"cosh"         { return COSH; }
+"tanh"         { return TANH; }
+"coth"         { return COTH; }
+"sech"         { return SECH; }
+"csch"         { return CSCH; }
 "arsinh"       { return ARSINH; }
 "arcosh"       { return ARCOSH; }
 "artanh"       { return ARTANH; }
@@ -134,11 +132,11 @@ SUBSCRIPT_DIGIT ("₀"|"₁"|"₂"|"₃"|"₄"|"₅"|"₆"|"₇"|"₈"|"₉")
 "arsech"       { return ARSECH; }
 "arcsch"       { return ARCSCH; }
 
-"i"       { return IMAGINARY_UNIT; }
+"i"            { return IMAGINARY_UNIT; }
 
-"Re"       { return REAL_PART; }
-"Im"       { return IMAGINARY_PART; }
-"arg"       { return ARGUMENT_OF_COMPLEX_NUM; }
+"Re"           { return REAL_PART; }
+"Im"           { return IMAGINARY_PART; }
+"arg"          { return ARGUMENT_OF_COMPLEX_NUM; }
 
 
 
