@@ -83,6 +83,7 @@ SUBSCRIPT_DIGIT ("₀"|"₁"|"₂"|"₃"|"₄"|"₅"|"₆"|"₇"|"₈"|"₉")
 "₊"            { return SUBSCRIPT_PLUS; }
 "₋"            { return SUBSCRIPT_MINUS; }
 
+"×"            { return MUL; }
 "·"            { return MUL; }
 "/"            { return DIV; }
 "√"            { return SQRT; }
